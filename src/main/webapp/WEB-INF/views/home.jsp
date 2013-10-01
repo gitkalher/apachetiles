@@ -7,7 +7,7 @@
 <body>
 	<h1>Hello world!</h1>
 
-	<p>The time on the server is ${serverTime}.</p>
+	<p>The current time on the server is ${serverTime}.</p>
 	<p>
 		<a href="login.html">Login</a>
 	</p>
