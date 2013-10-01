@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="myapp.homepage" template="/WEB-INF/layouts/layout_classic.jsp">
+		<put-attribute name="title" value="Blue Horn" />
+		<put-attribute name="header" value="/WEB-INF/tiles/banner.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/tiles/common_menu.jsp" />
+		<put-attribute name="body" value="myapp.homepage.ext.body" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+
+	<definition name="myapp.homepage.links" extends="myapp.homepage">
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer_links.jsp" />
+	</definition>
+
+	<!-- NOTE: By default tiles support wild cards but this is not available 
+		when CompleteAutoloadTilesContainerFactory enabled -->
+	<!-- <definition name="myapp.*" extends="myapp.homepage.links" > <put-attribute 
+		name="title" value="{1}" /> <put-attribute name="body" value="/WEB-INF/tiles/{1}.jsp" 
+		/> </definition> -->
+	
+	<!-- NOTE: Option 1 (WILDCARD) when CompleteAutoloadTilesContainerFactory enabled -->
+<!-- 	<definition name="WILDCARD:myapp.*" extends="myapp.homepage.links" > <put-attribute 
+		name="title" value="{1}" /> <put-attribute name="body" value="/WEB-INF/tiles/{1}.jsp"/> 
+	</definition>
+ -->
+
+	<!-- NOTE: Option 2 (REGEXP) when CompleteAutoloadTilesContainerFactory enabled -->
+	<definition name="REGEXP:myapp\.(.*)" extends="myapp.homepage.links" > 
+	<put-attribute name="title" value="{1}" /> 
+	<put-attribute name="body" value="/WEB-INF/tiles/{1}.jsp"/> 
+	</definition>
+		
+ 		
+	<definition name="myapp.homepage.mi" extends="myapp.homepage"
+		template="/WEB-INF/layouts/layout_classic_mi.jsp" />
+
+	<definition name="myapp.homepage.body" template="/WEB-INF/layouts/layout_homepage_body.jsp">
+		<put-attribute name="news">
+			<definition template="/WEB-INF/layouts/layout_news.jsp">
+				<put-attribute name="sansax" value="/WEB-INF/tiles/sansax.jsp" />
+				<put-attribute name="headlines" value="/WEB-INF/tiles/headlines.jsp" />
+			</definition>
+		</put-attribute>
+		<put-attribute name="homeBody" value="/WEB-INF/tiles/home_body.jsp" />
+		<put-attribute name="comment" value="/WEB-INF/tiles/comments.jsp" />
+	</definition>
+
+
+	<definition name="myapp.homepage.ext.body" extends="myapp.homepage.body">
+		<put-attribute name="siteSearch" value="/WEB-INF/tiles/site_search.jsp" />
+		<put-attribute name="caseStuddies" value="myapp.casestuddies.extended" />
+		<put-attribute name="taggs" value="/WEB-INF/tiles/taggs.jsp" />
+		<put-attribute name="userAgent" expression="${header['user-agent']}"/>
+	</definition>
+
+	<definition name="myapp.casestuddies" template="/WEB-INF/layouts/case_studdies.jsp">
+		<put-list-attribute name="casestuddies">
+			<add-attribute value="/WEB-INF/tiles/specsavers.jsp" />
+			<add-attribute value="/WEB-INF/tiles/capita_employee.jsp" />
+			<add-attribute value="/WEB-INF/tiles/consumer_goods.jsp" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="myapp.casestuddies.extended" extends="myapp.casestuddies">
+		<put-list-attribute name="casestuddies" inherit="true">
+			<add-attribute value="/WEB-INF/tiles/online_tickets.jsp" />
+		</put-list-attribute>
+	</definition>
+
+<!-- 	<definition name="myapp.viewpreparer" preparer="com.bluehorn.springmvc.viewpreparer.MenuPreparer"> 
+		<put-attribute name="pView" value="/WEB-INF/tiles/comments.jsp" /> 
+	</definition>
+ -->
+
+</tiles-definitions>
