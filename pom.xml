@@ -140,10 +140,27 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Test in progress -->
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>testInProgress-client</artifactId>
+			<version>1.0</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
+
+	<repositories>
+		<!-- Test in progress -->
+		<repository>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
@@ -195,6 +212,17 @@
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
+				</configuration>
+			</plugin>
+			<!-- Test in progress -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.13</version>
+				<configuration>
+					<includes>
+						<include>**/ProgressAllTestsSuite.java</include>
+					</includes>
 				</configuration>
 			</plugin>
 		</plugins>
