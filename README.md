@@ -2,7 +2,7 @@ apachetiles
 ====================================
 
 	This is a test project for learning apache tiles. 
-	Project can be forked for apache tiles.
+	Project can be forked for learning apache tiles.
 
 
 Build
@@ -29,10 +29,10 @@ Access
 
 Documentation
 ====================================
-1. Deploy documentation site
+	1. Deploy documentation site
 
 	mvn site:run
 
-2. Access documentation site
+	2. Access documentation site
 
 	http://localhost:8080/	
