@@ -49,7 +49,7 @@ public class SimpleCalculatorTest {
 		this.result = calculator.divide(no1, no2);
 		assertNotNull("Result should not be null!", this.result);
 		//Deliberately failing this ...
-		assertEquals(BigDecimal.valueOf(110), this.result);
+		assertEquals(BigDecimal.valueOf(10), this.result);
 	}
 
 }
